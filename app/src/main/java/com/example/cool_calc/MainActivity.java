@@ -13,6 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 public class MainActivity extends Activity {
+    //"" starts runningNumber empty
+    String runningNumber ="";
+    //this is outside onCreate because we need it elsewhere
+    TextView resultsView;
 
     @Override
     //onCreate is called when app is first opened
@@ -39,68 +43,78 @@ public class MainActivity extends Activity {
         ImageButton addBtn = findViewById(R.id.addBtn);
 
         Button clearBtn = findViewById(R.id.clearBtn);
-        TextView resultView = findViewById(R.id.resultsText);
+        resultsView = findViewById(R.id.resultsText);
+
+        //first action after app loads
+        resultsView.setText("");
 
         oneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                numberPressed(1);
             }
         });
 
         twoBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                numberPressed(2);
             }
         });
 
         threeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                numberPressed(3);
             }
         });
 
         fourBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(4);
             }
         });
 
         fiveBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(5);
             }
         });
 
         sixBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(6);
             }
         });
 
         sevenBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(7);
             }
         });
 
         eightBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(8);
             }
         });
 
         nineBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(9);
             }
         });
 
         zeroBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                numberPressed(0);
             }
         });
 
@@ -140,5 +154,11 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
+
+    void numberPressed(int number){
+        //+= means add next result to end of runningNumber
+        runningNumber += String.valueOf(number);
+      resultsView.setText(runningNumber);
     }
 }
