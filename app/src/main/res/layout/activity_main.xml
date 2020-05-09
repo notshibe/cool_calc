@@ -25,12 +25,13 @@
 
             <TextView
                 android:id="@+id/calc_view"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00BCD4"
                 android:gravity="end"
-                android:paddingStart="10dp"
+                android:paddingStart="20dp"
                 android:paddingTop="50dp"
+                android:paddingRight="10dp"
                 android:text="567"
                 android:textSize="45sp" />
 
