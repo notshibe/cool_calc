@@ -15,14 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"><![CDATA[>
-
-
-
-
-
-
-        ]]>
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +28,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#00BCD4"
-                android:gravity="right"
-                android:paddingLeft="10dp"
+                android:gravity="end"
+                android:paddingStart="10dp"
                 android:paddingTop="50dp"
                 android:text="567"
                 android:textSize="45sp" />
@@ -229,8 +222,9 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
-                android:text="button"
-                android:src="@drawable/add" />
+                android:contentDescription="plus button"
+                android:src="@drawable/add"
+                android:text="button" />
 
         </LinearLayout>
 
@@ -244,6 +238,7 @@
         android:layout_marginEnd="11dp"
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
+        android:contentDescription="equals_button"
         android:src="@drawable/equal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
