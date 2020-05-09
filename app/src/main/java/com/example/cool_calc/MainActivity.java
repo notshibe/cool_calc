@@ -13,10 +13,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 public class MainActivity extends Activity {
-    //"" starts runningNumber empty
-    String runningNumber ="";
     //this is outside onCreate because we need it elsewhere
     TextView resultsView;
+
+    public enum Operation {
+        ADD, SUBTRACT, DIVIDE, MULTIPLY, EQUAL
+    }
+
+    //"" starts runningNumber empty
+    String runningNumber ="";
+    String leftValueStr = "";
+    String rightValueStr = "";
+    Operation currentOperation;
+    int result = 0;
 
     @Override
     //onCreate is called when app is first opened
@@ -121,44 +130,91 @@ public class MainActivity extends Activity {
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                processOperation(Operation.ADD);
             }
         });
 
         subtractBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                processOperation(Operation.SUBTRACT);
             }
         });
 
         multiplyBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                processOperation(Operation.MULTIPLY);
             }
         });
 
         divideBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                processOperation(Operation.DIVIDE);
             }
         });
 
         clearBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                leftValueStr = "";
+                rightValueStr = "";
+                result = 0;
+                runningNumber = "";
+                currentOperation = null;
+                resultsView.setText("0");
             }
         });
 
         calcBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                processOperation(Operation.EQUAL);
             }
         });
 
     }
 
+    void processOperation(Operation operation){
+        if(currentOperation != null){
+
+            if(runningNumber != ""){
+                rightValueStr = runningNumber;
+                runningNumber = "";
+
+                //stores result of operation into integer called result
+                switch (currentOperation){
+                    case ADD:
+                        result = Integer.parseInt(leftValueStr) + Integer.parseInt(rightValueStr);
+                        break;
+                    case SUBTRACT:
+                        result = Integer.parseInt(leftValueStr) - Integer.parseInt(rightValueStr);
+                        break;
+                    case MULTIPLY:
+                        result = Integer.parseInt(leftValueStr) * Integer.parseInt(rightValueStr);
+                        break;
+                    case DIVIDE:
+                        result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
+                        break;
+                }
+
+                leftValueStr = String.valueOf(result);
+                resultsView.setText(leftValueStr);
+            }
+
+        }  else {
+            leftValueStr = runningNumber;
+            runningNumber = "";
+            }
+
+        currentOperation = operation;
+    }
+
     void numberPressed(int number){
         //+= means add next result to end of runningNumber
         runningNumber += String.valueOf(number);
-      resultsView.setText(runningNumber);
+            //sets text of resultsView to running number
+            resultsView.setText(runningNumber);
     }
 }
