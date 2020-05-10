@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     Operation currentOperation;
     int result = 0;
 
+
     @Override
     //onCreate is called when app is first opened
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,7 @@ public class MainActivity extends Activity {
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //sets ENUM Operation to add
                 processOperation(Operation.ADD);
             }
         });
@@ -176,7 +178,7 @@ public class MainActivity extends Activity {
 
     }
 
-    void processOperation(Operation operation){
+    void processOperation(Operation newoperation){
         if(currentOperation != null){
 
             if(runningNumber != ""){
@@ -186,6 +188,7 @@ public class MainActivity extends Activity {
                 //stores result of operation into integer called result
                 switch (currentOperation){
                     case ADD:
+                        //parseInt converts string to integer
                         result = Integer.parseInt(leftValueStr) + Integer.parseInt(rightValueStr);
                         break;
                     case SUBTRACT:
@@ -202,13 +205,15 @@ public class MainActivity extends Activity {
                 leftValueStr = String.valueOf(result);
                 resultsView.setText(leftValueStr);
             }
+            //changes currentOperation to new operation coming through
+            currentOperation = newoperation;
 
-        }  else {
+        }  else { //currentOperation is blank so just fill screen with numbers
             leftValueStr = runningNumber;
             runningNumber = "";
+            //changes currentOperation to new operation coming through
+            currentOperation = newoperation;
             }
-
-        currentOperation = operation;
     }
 
     void numberPressed(int number){
